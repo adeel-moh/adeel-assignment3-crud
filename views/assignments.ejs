@@ -1,0 +1,26 @@
+<%- include('partials/header', { title: 'Assignments' }) %>
+
+<h1 class="mt-4 mb-3 text-center">Assignments</h1>
+<div class="text-center mb-4">
+  <a href="/assignments/add" class="btn btn-success">Add New Assignment</a>
+</div>
+
+<% if (assignments.length === 0) { %>
+  <p class="text-center text-muted">No assignments yet.</p>
+<% } else { %>
+  <ul class="list-group">
+    <% assignments.forEach(a => { %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong><%= a.title %></strong> — <%= a.description %>
+        </div>
+        <div>
+          <a href="/assignments/edit/<%= a._id %>" class="btn btn-sm btn-warning me-2">Edit</a>
+          <a href="/assignments/delete/<%= a._id %>" class="btn btn-sm btn-danger">Delete</a>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<%- include('partials/footer') %>
